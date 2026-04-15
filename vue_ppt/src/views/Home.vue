@@ -27,6 +27,12 @@ const categories = ref<Category[]>([
         title: 'AI Skill Tree ',
         description: '点亮隐藏技能树的关键节点',
         route: '/ai-skill-tree'
+      },
+      {
+        id: 'claude-harness',
+        title: 'Claude Agent Harness 深度解析',
+        description: 'Skills、Memory、Security 与开源生态',
+        route: '/claude-harness'
       }
     ]
   },
