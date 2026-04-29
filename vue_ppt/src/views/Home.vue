@@ -33,6 +33,12 @@ const categories = ref<Category[]>([
         title: 'Claude Agent Harness 深度解析',
         description: 'Skills、Memory、Security 与开源生态',
         route: '/claude-harness'
+      },
+      {
+        id: 'auto-generate-rule',
+        title: 'Auto-Generate-Rule',
+        description: '医疗规则自动生成 — 自然语言到数据库规则的 6 步流水线',
+        route: '/auto-generate-rule'
       }
     ]
   },

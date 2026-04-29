@@ -1,5 +1,5 @@
 <template>
-  <div class="ppt-container" @keydown="handleKeyDown" tabindex="0">
+  <div ref="containerRef" class="ppt-container" @keydown="handleKeyDown" @click="focusContainer" tabindex="0">
     <!-- 幻灯片内容区域 -->
     <div class="slides-viewport">
       <div 
@@ -92,6 +92,7 @@ const props = defineProps({
 
 const currentSlide = ref(0)
 const showThumbnails = ref(false)
+const containerRef = ref(null)
 const NAVIGATION_COOLDOWN = 250
 let lastNavigationAt = 0
 
@@ -126,6 +127,10 @@ const goToSlide = (index) => {
 }
 
 const handleKeyDown = (event) => {
+  // ignore key events when user is typing in an input
+  if (event.target?.tagName === 'INPUT' || event.target?.tagName === 'TEXTAREA' || event.target?.isContentEditable) {
+    return
+  }
   if (event.repeat) {
     event.preventDefault()
     return
@@ -155,13 +160,18 @@ const handleKeyDown = (event) => {
   }
 }
 
+const focusContainer = () => {
+  containerRef.value?.focus()
+}
+
 onMounted(() => {
   document.title = props.title
-  // 自动获取焦点以支持键盘导航
-  const container = document.querySelector('.ppt-container')
-  if (container) {
-    container.focus()
-  }
+  focusContainer()
+  document.addEventListener('keydown', handleKeyDown)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', handleKeyDown)
 })
 </script>
 

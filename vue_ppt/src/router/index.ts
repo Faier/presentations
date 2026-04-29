@@ -26,6 +26,10 @@ const router = createRouter({
     {
       path: '/claude-harness',
       component: () => import('@/presentations/claude-harness/index.vue')
+    },
+    {
+      path: '/auto-generate-rule',
+      component: () => import('@/presentations/auto-generate-rule/index.vue')
     }
   ],
 })
